@@ -1,9 +1,19 @@
+
 require "rubycas/server/activerecord/version"
 
-module Rubycas
+module RubaCAS
   module Server
-    module Activerecord
-      # Your code goes here...
+    module Core
+      module Database
+        extend self
+        def setup(config_file)
+          # add code
+        end
+      end
+
+      module ActiveRecord
+
+      end
     end
   end
 end

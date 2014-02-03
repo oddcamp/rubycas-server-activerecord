@@ -1,7 +1,9 @@
-module Rubycas
+module RubyCAS
   module Server
-    module Activerecord
-      VERSION = "0.0.1"
+    module Core
+      module ActiveRecord
+        VERSION = "0.0.1"
+      end
     end
   end
 end
