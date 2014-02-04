@@ -6,7 +6,7 @@ module RubaCAS
       module Database
         extend self
         def setup(config_file)
-          # add code
+          ActiveRecord::Base.establish_connection(config_file)
         end
       end
     end

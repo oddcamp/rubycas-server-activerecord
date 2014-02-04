@@ -1,4 +1,4 @@
-require 'active_record'
+require "active_record"
 
 class ProxyGrantingTicket < ActiveRecord::Base
 
