@@ -122,6 +122,66 @@ describe RubyCAS::Server::Core::ActiveRecord do
   end
 
 
+  describe TicketGrantingTicket do
+    before do
+      @ticket_granting_ticket = TicketGrantingTicket.new(
+        ticket: "Example Ticket",
+        client_hostname: "Example Client",
+        username: "Example Username",
+      )
+    end
+
+    it "responds to properties" do
+      expect(@ticket_granting_ticket).to respond_to(:ticket)
+      expect(@ticket_granting_ticket).to respond_to(:client_hostname)
+      expect(@ticket_granting_ticket).to respond_to(:username)
+
+      expect(@ticket_granting_ticket).to be_valid
+    end
+
+    describe "when ticket is not present" do
+      before { @ticket_granting_ticket.ticket = "  " }
+      it { expect(@ticket_granting_ticket).not_to be_valid }
+    end
+
+    describe "when client_hostname is not present" do
+      before { @ticket_granting_ticket.client_hostname = "  " }
+      it { expect(@ticket_granting_ticket).not_to be_valid }
+    end
+
+    describe "when username is not present" do
+      before { @ticket_granting_ticket.username = "  " }
+      it { expect(@ticket_granting_ticket).not_to be_valid }
+    end
+  end
+
+  describe LoginTicket do
+    before do
+      @login_ticket = LoginTicket.new(
+        ticket: "Example Ticket",
+        consumed: Time.at(rand * Time.now.to_i),
+        client_hostname: "Example Client",
+      )
+    end
+
+    it "responds to properties" do
+      expect(@login_ticket).to respond_to(:ticket)
+      expect(@login_ticket).to respond_to(:consumed)
+      expect(@login_ticket).to respond_to(:client_hostname)
+
+      expect(@login_ticket).to be_valid
+    end
+
+    describe "when ticket is not present" do
+      before { @login_ticket.ticket = "  " }
+      it { expect(@login_ticket).not_to be_valid }
+    end
+
+    describe "when client_hostname is not present" do
+      before { @login_ticket.client_hostname = "  " }
+      it { expect(@login_ticket).not_to be_valid }
+    end
+  end
 
 
 
