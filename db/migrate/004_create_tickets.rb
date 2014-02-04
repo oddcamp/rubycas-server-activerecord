@@ -6,7 +6,7 @@ class CreateTickets < ActiveRecord::Migration
       t.datetime :consumed
       t.string :client_hostname
       t.string :username
-      t.string :type
+      t.string :another_type
 
       t.timestamps
     end

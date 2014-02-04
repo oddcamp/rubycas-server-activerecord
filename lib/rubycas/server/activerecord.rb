@@ -1,4 +1,5 @@
 require "active_record"
+require "rubycas/server/activerecord/model"
 require "rubycas/server/activerecord/version"
 
 module RubaCAS
