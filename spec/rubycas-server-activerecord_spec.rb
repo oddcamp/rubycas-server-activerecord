@@ -3,7 +3,11 @@ require "spec_helper"
 describe RubyCAS::Server::Core::ActiveRecord do
 
   before(:all) do
-    ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
+    ActiveRecord::Base.establish_connection(
+      adapter: "sqlite3",
+      database: ":memory:"
+    )
+    ActiveRecord::Migrator.migrate('db/migrate')
   end
 
   describe "Load schema" do
