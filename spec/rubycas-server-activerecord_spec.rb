@@ -155,67 +155,42 @@ describe RubyCAS::Server::Core::ActiveRecord do
     end
   end
 
-  describe LoginTicket do
+  describe ServiceTicket do
     before do
-      @login_ticket = LoginTicket.new(
+      @ticket_granting_ticket = TicketGrantingTicket.new(
         ticket: "Example Ticket",
-        consumed: Time.at(rand * Time.now.to_i),
         client_hostname: "Example Client",
+        username: "Example Username",
+      )
+      @ticket_granting_ticket.save!
+
+      @service_ticket = @ticket_granting_ticket.service_tickets.build(
+        ticket: "Example Ticket",
+        service: "Example Service",
+        consumed: Time.at(rand * Time.now.to_i)
       )
     end
 
-    it "responds to properties" do
-      expect(@login_ticket).to respond_to(:ticket)
-      expect(@login_ticket).to respond_to(:consumed)
-      expect(@login_ticket).to respond_to(:client_hostname)
+    subject { @service_ticket }
 
-      expect(@login_ticket).to be_valid
+    it { expect(@service_ticket).to respond_to(:ticket) }
+    it { expect(@service_ticket).to respond_to(:service) }
+    it { expect(@service_ticket).to respond_to(:consumed) }
+    it { expect(@service_ticket).to respond_to(:ticket_granting_ticket_id) }
+
+    its(:ticket_granting_ticket) { should eq(@ticket_granting_ticket) }
+
+    describe "with the initialization" do
+      it { expect(@ticket_granting_ticket).to be_valid }
+      it { expect(@service_ticket).to be_valid }
     end
 
-    describe "when ticket is not present" do
-      before { @login_ticket.ticket = "  " }
-      it { expect(@login_ticket).not_to be_valid }
-    end
-
-    describe "when client_hostname is not present" do
-      before { @login_ticket.client_hostname = "  " }
-      it { expect(@login_ticket).not_to be_valid }
+    describe "with ticket_granting_ticket_id not present" do
+      before { @service_ticket.ticket_granting_ticket_id = nil }
+      it { expect(@service_ticket).not_to be_valid }
     end
   end
 
 
 
-
-
-  describe "Load schema" do
-
-    it 'Validate number of models' do
-      pending('Validate number of models')
-    end
-
-    it 'Validate Ticket Model' do
-      pending('Validate Ticket Model')
-    end
-
-    it 'Validate ServiceTicket Model' do
-      pending('Validate ServiceTicket Model')
-    end
-
-    it 'Validate ProxyTicket Model' do
-      pending('Validate ProxyTicket Model')
-    end
-
-    it 'Validate LoginTicket Model' do
-      pending('Validate LoginTicket Model')
-    end
-
-    it 'Validate ProxyGrantingTicket Model' do
-      pending('Validate ProxyGrantingTicket Model')
-    end
-
-    it 'Validate TicketGrantingTicket Model' do
-      pending('Validate TicketGrantingTicket Model')
-    end
-
-  end
 end
