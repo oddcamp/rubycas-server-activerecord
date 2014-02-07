@@ -10,7 +10,6 @@ describe RubyCAS::Server::Core::ActiveRecord do
     ActiveRecord::Migrator.migrate('db/migrate')
   end
 
-
   describe Ticket do
     before do
       @ticket = Ticket.new(
@@ -33,30 +32,30 @@ describe RubyCAS::Server::Core::ActiveRecord do
       expect(@ticket).to be_valid
     end
 
-    describe "when ticket is not present" do
-      before { @ticket.ticket = "  " }
-      it { expect(@ticket).not_to be_valid }
+    it "is invalid without :ticket" do
+      @ticket.ticket = "  "
+      expect(@ticket).not_to be_valid
     end
 
-    describe "when service is not present" do
-      before { @ticket.service = "  " }
-      it { expect(@ticket).not_to be_valid }
+    it "is invalid without service" do
+      @ticket.service = "  "
+      expect(@ticket).not_to be_valid
     end
 
-    describe "when client_hostname is not present" do
-      before { @ticket.client_hostname = "  " }
-      it { expect(@ticket).not_to be_valid }
+    it "is invalid without client_hostname" do
+      @ticket.client_hostname = "  "
+      expect(@ticket).not_to be_valid
     end
 
-    describe "when username is not present" do
-      before { @ticket.username = "  " }
-      it { expect(@ticket).not_to be_valid }
+    it "is invalid without username" do
+      @ticket.username = "  "
+      expect(@ticket).not_to be_valid
     end
 
     #FIX this
-    describe "when another_type is not present" do
-      before { @ticket.another_type = "  " }
-      it { expect(@ticket).not_to be_valid }
+    it "is invalid without another_type" do
+      @ticket.another_type = "  "
+      expect(@ticket).not_to be_valid
     end
   end
 
@@ -77,14 +76,14 @@ describe RubyCAS::Server::Core::ActiveRecord do
       expect(@login_ticket).to be_valid
     end
 
-    describe "when ticket is not present" do
-      before { @login_ticket.ticket = "  " }
-      it { expect(@login_ticket).not_to be_valid }
+    it "is invalid whithout ticket" do
+      @login_ticket.ticket = "  "
+      expect(@login_ticket).not_to be_valid
     end
 
-    describe "when client_hostname is not present" do
-      before { @login_ticket.client_hostname = "  " }
-      it { expect(@login_ticket).not_to be_valid }
+    it "is invalid without client_hostname" do
+      @login_ticket.client_hostname = "  "
+      expect(@login_ticket).not_to be_valid
     end
   end
 
@@ -105,19 +104,19 @@ describe RubyCAS::Server::Core::ActiveRecord do
       expect(@proxy_granting_ticket).to be_valid
     end
 
-    describe "when ticket is not present" do
-      before { @proxy_granting_ticket.ticket = "  " }
-      it { expect(@proxy_granting_ticket).not_to be_valid }
+    it "is invalid without ticket" do
+      @proxy_granting_ticket.ticket = "  "
+      expect(@proxy_granting_ticket).not_to be_valid
     end
 
-    describe "when client_hostname is not present" do
-      before { @proxy_granting_ticket.client_hostname = "  " }
-      it { expect(@proxy_granting_ticket).not_to be_valid }
+    it "is invalid without client_hostname" do
+      @proxy_granting_ticket.client_hostname = "  "
+      expect(@proxy_granting_ticket).not_to be_valid
     end
 
-    describe "when iou is not present" do
-      before { @proxy_granting_ticket.iou = "  " }
-      it { expect(@proxy_granting_ticket).not_to be_valid }
+    it "is invalid without iou" do
+      @proxy_granting_ticket.iou = "  "
+      expect(@proxy_granting_ticket).not_to be_valid
     end
   end
 
@@ -139,19 +138,19 @@ describe RubyCAS::Server::Core::ActiveRecord do
       expect(@ticket_granting_ticket).to be_valid
     end
 
-    describe "when ticket is not present" do
-      before { @ticket_granting_ticket.ticket = "  " }
-      it { expect(@ticket_granting_ticket).not_to be_valid }
+    it "is invalid without ticket" do
+      @ticket_granting_ticket.ticket = "  "
+      expect(@ticket_granting_ticket).not_to be_valid
     end
 
-    describe "when client_hostname is not present" do
-      before { @ticket_granting_ticket.client_hostname = "  " }
-      it { expect(@ticket_granting_ticket).not_to be_valid }
+    it "is invalid without client_hostname" do
+      @ticket_granting_ticket.client_hostname = "  "
+      expect(@ticket_granting_ticket).not_to be_valid
     end
 
-    describe "when username is not present" do
-      before { @ticket_granting_ticket.username = "  " }
-      it { expect(@ticket_granting_ticket).not_to be_valid }
+    it "is invalid without username" do
+      @ticket_granting_ticket.username = "  "
+      expect(@ticket_granting_ticket).not_to be_valid
     end
   end
 
@@ -171,26 +170,30 @@ describe RubyCAS::Server::Core::ActiveRecord do
       )
     end
 
-    subject { @service_ticket }
-
-    it { expect(@service_ticket).to respond_to(:ticket) }
-    it { expect(@service_ticket).to respond_to(:service) }
-    it { expect(@service_ticket).to respond_to(:consumed) }
-    it { expect(@service_ticket).to respond_to(:ticket_granting_ticket_id) }
-
+    subject {@service_ticket}
     its(:ticket_granting_ticket) { should eq(@ticket_granting_ticket) }
 
-    describe "with the initialization" do
-      it { expect(@ticket_granting_ticket).to be_valid }
-      it { expect(@service_ticket).to be_valid }
+    it "responds to properties" do
+      expect(@service_ticket).to respond_to(:ticket)
+      expect(@service_ticket).to respond_to(:service)
+      expect(@service_ticket).to respond_to(:consumed)
+      expect(@service_ticket).to respond_to(:ticket_granting_ticket_id)
     end
 
-    describe "with ticket_granting_ticket_id not present" do
-      before { @service_ticket.ticket_granting_ticket_id = nil }
-      it { expect(@service_ticket).not_to be_valid }
+    it "is invalid without :ticket" do
+      @service_ticket.ticket = nil
+      expect(@service_ticket).not_to be_valid
+    end
+
+    it "is invalid without :service" do
+      @service_ticket.service = nil
+      expect(@service_ticket).not_to be_valid
+    end
+
+    it "is invalid without foreign key" do
+      @service_ticket.ticket_granting_ticket_id = nil
+      expect(@service_ticket).not_to be_valid
     end
   end
-
-
 
 end
