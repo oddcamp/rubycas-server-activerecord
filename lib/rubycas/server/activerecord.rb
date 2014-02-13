@@ -2,15 +2,9 @@ require "active_record"
 require "rubycas/server/activerecord/model"
 require "rubycas/server/activerecord/version"
 
-module RubaCAS
-  module Server
-    module Core
-      module Database
-        extend self
-        def setup(config_file)
-          ActiveRecord::Base.establish_connection(config_file)
-        end
-      end
-    end
+module RubyCAS::Server::Core::Database
+  extend self
+  def setup(config_file)
+    ActiveRecord::Base.establish_connection(config_file)
   end
 end

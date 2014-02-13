@@ -1,6 +1,8 @@
 require "spec_helper"
 
-describe RubyCAS::Server::Core::ActiveRecord do
+include RubyCAS::Server::Core::ActiveRecord::Model
+
+describe RubyCAS::Server::Core::ActiveRecord::Model do
 
   before(:all) do
     ActiveRecord::Base.establish_connection(
@@ -9,7 +11,7 @@ describe RubyCAS::Server::Core::ActiveRecord do
     )
     ActiveRecord::Migrator.migrate('db/migrate')
   end
-
+=begin
   describe Ticket do
     before do
       @ticket = Ticket.new(
@@ -58,7 +60,7 @@ describe RubyCAS::Server::Core::ActiveRecord do
       expect(@ticket).not_to be_valid
     end
   end
-
+=end
   describe LoginTicket do
     before do
       @login_ticket = LoginTicket.new(
@@ -72,6 +74,7 @@ describe RubyCAS::Server::Core::ActiveRecord do
       expect(@login_ticket).to respond_to(:ticket)
       expect(@login_ticket).to respond_to(:consumed)
       expect(@login_ticket).to respond_to(:client_hostname)
+      expect(@login_ticket).to respond_to(:consume!)
 
       expect(@login_ticket).to be_valid
     end
