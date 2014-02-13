@@ -4,7 +4,7 @@ class CreateTicketGrantingTickets < ActiveRecord::Migration
       t.string :ticket
       t.string :client_hostname
       t.string :username
-      t.text :extra_attriutes #ONLY postgresql supports JSON
+      t.text :extra_attributes #ONLY postgresql supports JSON
 
       t.timestamps
     end
