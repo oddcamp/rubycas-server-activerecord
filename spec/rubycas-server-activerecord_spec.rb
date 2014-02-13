@@ -1,8 +1,8 @@
 require "spec_helper"
 
-include RubyCAS::Server::Core::ActiveRecord::Model
+include RubyCAS::Server::Core::Database::Model
 
-describe RubyCAS::Server::Core::ActiveRecord::Model do
+describe RubyCAS::Server::Core::Database::Model do
 
   before(:all) do
     ActiveRecord::Base.establish_connection(
