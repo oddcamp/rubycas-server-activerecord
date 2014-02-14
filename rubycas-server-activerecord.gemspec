@@ -5,7 +5,7 @@ require 'rubycas/server/activerecord/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rubycas-server-activerecord"
-  spec.version       = RubyCAS::Server::Core::Database::VERSION
+  spec.version       = RubyCAS::Server::Core::VERSION
   spec.authors       = ["Filippos Vasilakis"]
   spec.email         = ["vasilakisfil@gmail.com"]
   spec.description   = %q{DataMapper adapter for RubyCAS Server}

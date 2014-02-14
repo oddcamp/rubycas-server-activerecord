@@ -1,10 +1,10 @@
 require 'rubycas/server/activerecord/model/ticket'
-require 'rubycas/server/activerecord/model/consumable'
+#require 'rubycas/server/activerecord/model/consumable'
 
 module RubyCAS::Server::Core::Tickets
   class ServiceTicket < ActiveRecord::Base
-    include Ticket
-    include Consumable
+    #include RubyCAS::Server::Core::Ticket
+    #include RubyCAS::Server::Core::Consumable
 
     has_one :proxy_granting_ticket
     belongs_to :ticket_granting_ticket
