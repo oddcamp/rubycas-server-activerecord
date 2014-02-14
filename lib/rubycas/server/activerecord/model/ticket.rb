@@ -1,4 +1,4 @@
-module RubyCAS::Server::Core::Database::Model
+module RubyCAS::Server::Core::Tickets
   module Ticket
     def to_s
       ticket

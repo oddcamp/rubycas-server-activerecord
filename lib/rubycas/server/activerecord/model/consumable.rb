@@ -1,4 +1,4 @@
-module RubyCAS::Server::Core::Database::Model
+module RubyCAS::Server::Core
   module Consumable
     def consume!
       self.consumed = Time.now
