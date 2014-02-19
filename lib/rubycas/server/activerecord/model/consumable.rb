@@ -1,3 +1,4 @@
+# NOT USED YET
 module RubyCAS::Server::Core
   module Consumable
     def consume!

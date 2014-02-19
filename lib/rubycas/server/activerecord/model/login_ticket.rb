@@ -1,9 +1,9 @@
 require 'rubycas/server/activerecord/model/ticket'
-#require 'rubycas/server/activerecord/model/consumable'
+require 'rubycas/server/activerecord/model/consumable'
 
 module RubyCAS::Server::Core::Tickets
   class LoginTicket < ActiveRecord::Base
-    #include RubyCAS::Server::Core::Ticket
+    include RubyCAS::Server::Core::Ticket
     #include RubyCAS::Server::Core::Consumable
 
 
