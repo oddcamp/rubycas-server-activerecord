@@ -11,56 +11,7 @@ describe RubyCAS::Server::Core::Tickets do
     )
     ActiveRecord::Migrator.migrate('db/migrate')
   end
-=begin
-  describe Ticket do
-    before do
-      @ticket = Ticket.new(
-        ticket: "Example Ticket",
-        service: "Example Service",
-        client_hostname: "Example Client",
-        username: "Example Username",
-        # FIX this
-        another_type: "Example Type"
-      )
-    end
 
-    it "responds to properties" do
-      expect(@ticket).to respond_to(:ticket)
-      expect(@ticket).to respond_to(:service)
-      expect(@ticket).to respond_to(:client_hostname)
-      expect(@ticket).to respond_to(:username)
-      expect(@ticket).to respond_to(:another_type)
-
-      expect(@ticket).to be_valid
-    end
-
-    it "is invalid without :ticket" do
-      @ticket.ticket = "  "
-      expect(@ticket).not_to be_valid
-    end
-
-    it "is invalid without service" do
-      @ticket.service = "  "
-      expect(@ticket).not_to be_valid
-    end
-
-    it "is invalid without client_hostname" do
-      @ticket.client_hostname = "  "
-      expect(@ticket).not_to be_valid
-    end
-
-    it "is invalid without username" do
-      @ticket.username = "  "
-      expect(@ticket).not_to be_valid
-    end
-
-    #FIX this
-    it "is invalid without another_type" do
-      @ticket.another_type = "  "
-      expect(@ticket).not_to be_valid
-    end
-  end
-=end
   describe LoginTicket do
     before do
       @login_ticket = LoginTicket.new(
@@ -137,6 +88,7 @@ describe RubyCAS::Server::Core::Tickets do
       expect(@ticket_granting_ticket).to respond_to(:ticket)
       expect(@ticket_granting_ticket).to respond_to(:client_hostname)
       expect(@ticket_granting_ticket).to respond_to(:username)
+      expect(@ticket_granting_ticket).to respond_to(:remember_me)
 
       expect(@ticket_granting_ticket).to be_valid
     end
@@ -154,6 +106,20 @@ describe RubyCAS::Server::Core::Tickets do
     it "is invalid without username" do
       @ticket_granting_ticket.username = "  "
       expect(@ticket_granting_ticket).not_to be_valid
+    end
+
+    it "is valid without remember_me" do
+      expect(@ticket_granting_ticket).to be_valid
+    end
+
+    it "remember_me gets the default value false" do
+      @ticket_granting_ticket = TicketGrantingTicket.new(
+        ticket: "Example Ticket",
+        client_hostname: "Example Client",
+        username: "Example Username",
+      )
+      @ticket_granting_ticket.save!
+      expect(@ticket_granting_ticket.remember_me).to be_false
     end
   end
 

@@ -4,6 +4,7 @@ class CreateTicketGrantingTickets < ActiveRecord::Migration
       t.string :ticket
       t.string :client_hostname
       t.string :username
+      t.boolean :remember_me, default: false
       t.text :extra_attributes #ONLY postgresql supports JSON
 
       t.timestamps
