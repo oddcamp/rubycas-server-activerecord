@@ -7,7 +7,7 @@ class CreateServiceTickets < ActiveRecord::Migration
       t.string :username
       t.string :client_hostname
 
-      t.integer :ticket_granting_ticket_id
+      t.belongs_to :ticket_granting_ticket
 
       t.timestamps
     end
