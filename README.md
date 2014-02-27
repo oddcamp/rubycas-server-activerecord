@@ -16,9 +16,10 @@ Or install it yourself as:
 
     $ gem install rubycas-server-activerecord
 
-## Usage
+## Tests
 
-Still in the works
+To run the tests execute:
+    rspec spec
 
 ## Contributing
 
