@@ -1,5 +1,5 @@
 # Rubycas::Server::Activerecord
-![Coverage Status](https://coveralls.io/repos/kollegorna/rubycas-server-activerecord/badge.png)](https://coveralls.io/r/kollegorna/rubycas-server-activerecord)
+[![Coverage Status](https://coveralls.io/repos/kollegorna/rubycas-server-activerecord/badge.png)](https://coveralls.io/r/kollegorna/rubycas-server-activerecord)
 
 
 ActiveRecord adapter for RubyCAS Server Core (RubyCAS2.0)
