@@ -5,7 +5,6 @@ require "rubycas/server/activerecord/version"
 module RubyCAS::Server::Core::Database
   extend self
   def setup(config_file)
-    ActiveRecord::Base.establish_connection(config_file)
     return true
   end
 end
