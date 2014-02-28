@@ -1,3 +1,5 @@
+require 'coveralls'
+Coveralls.wear!
 require "rubycas/server/activerecord"
 require "rubycas/server/activerecord/model/login_ticket"
 require 'rspec'
