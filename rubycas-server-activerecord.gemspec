@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = RubyCAS::Server::Core::VERSION
   spec.authors       = ["Filippos Vasilakis"]
   spec.email         = ["vasilakisfil@gmail.com"]
-  spec.description   = %q{DataMapper adapter for RubyCAS Server}
-  spec.summary       = %q{DataMapper adapter for RubyCAS Server}
+  spec.description   = %q{Activerecord adapter for RubyCAS Server}
+  spec.summary       = spec.description
   spec.homepage      = ""
   spec.license       = "MIT"
 
