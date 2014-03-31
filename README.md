@@ -1,6 +1,7 @@
 # Rubycas::Server::Activerecord
-![Coverage Status](https://coveralls.io/repos/kollegorna/rubycas-server-activerecord/badge.png)](https://coveralls.io/r/kollegorna/rubycas-server-activerecord)
-
+[![Build Status](https://travis-ci.org/kollegorna/rubycas-server-activerecord.png?branch=master)](https://travis-ci.org/kollegorna/rubycas-server-activerecord)
+[![Code Climate](https://codeclimate.com/github/kollegorna/rubycas-server-activerecord)](https://codeclimate.com/github/kollegorna/rubycas-server-activerecord)
+[![Coverage Status](https://coveralls.io/repos/kollegorna/rubycas-server-activerecord/badge.png)](https://coveralls.io/r/kollegorna/rubycas-server-activerecord)
 
 ActiveRecord adapter for RubyCAS Server Core (RubyCAS2.0)
 
