@@ -40,7 +40,7 @@ module RubyCAS::Server::Core::Tickets
 
     protected
       def default_remember_me
-        self.remember_me = false
+        remember_me = false if remember_me.nil?
         #If your callback function returns false, then rails won't save the object
         #as it cancels all callbacks !!
         return true
