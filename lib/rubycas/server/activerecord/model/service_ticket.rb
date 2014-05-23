@@ -21,7 +21,8 @@ module RubyCAS::Server::Core::Tickets
     end
 
     def consume!
-      self.consumed = DateTime.now
+      self.consumed = Time.zone.now
+      self.save
     end
   end
 end
