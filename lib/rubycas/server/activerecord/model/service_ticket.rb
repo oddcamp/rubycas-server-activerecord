@@ -15,13 +15,13 @@ module RubyCAS::Server::Core::Tickets
       lifetime = Time.now.to_i - created_at.to_time.to_i
       lifetime > max_lifetime
     end
+
     def consumed?
-      consumed
+      consumed.nil? ? false : true
     end
 
     def consume!
-      consumed = true
-      self.save
+      self.consumed = DateTime.now
     end
   end
 end

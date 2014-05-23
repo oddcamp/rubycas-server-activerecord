@@ -135,7 +135,8 @@ describe RubyCAS::Server::Core::Tickets do
       @service_ticket = @ticket_granting_ticket.service_tickets.build(
         ticket: "Example Ticket",
         service: "Example Service",
-        consumed: Time.at(rand * Time.now.to_i)
+        username: "Example username",
+        client_hostname: "Example client hostname"
       )
     end
 
@@ -162,6 +163,44 @@ describe RubyCAS::Server::Core::Tickets do
     it "is invalid without foreign key" do
       @service_ticket.ticket_granting_ticket_id = nil
       expect(@service_ticket).not_to be_valid
+    end
+
+    it "is not consumed at first" do
+      expect(@service_ticket.consumed?).to be_false
+    end
+require 'rubycas/server/activerecord/model/ticket'
+#require 'rubycas/server/activerecord/model/consumable'
+
+module RubyCAS::Server::Core::Tickets
+  class ServiceTicket < ActiveRecord::Base
+    include RubyCAS::Server::Core::Ticket
+    #include RubyCAS::Server::Core::Consumable
+
+    has_one :proxy_granting_ticket
+    belongs_to :ticket_granting_ticket
+
+    validates :ticket, :service, :ticket_granting_ticket_id, presence: true
+
+    def expired?(max_lifetime)
+      lifetime = Time.now.to_i - created_at.to_time.to_i
+      lifetime > max_lifetime
+    end
+
+    def consumed?
+      consumed.nil? ? false : true
+    end
+
+    def consume!
+      self.consumed = DateTime.now
+    end
+  end
+end
+    context "Service ticket consumption" do
+      it "when consumed #consumed? returns true" do
+        @service_ticket.consume!
+        expect(@service_ticket.consumed?).to eq true
+        expect(@service_ticket.consumed.to_s).to eq DateTime.now.to_s
+      end
     end
   end
 
