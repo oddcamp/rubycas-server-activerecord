@@ -119,7 +119,7 @@ describe RubyCAS::Server::Core::Tickets do
         username: "Example Username",
       )
       @ticket_granting_ticket.save!
-      expect(@ticket_granting_ticket.remember_me).to be_false
+      expect(@ticket_granting_ticket.remember_me).to be_falsey
     end
   end
 
@@ -166,7 +166,7 @@ describe RubyCAS::Server::Core::Tickets do
     end
 
     it "is not consumed at first" do
-      expect(@service_ticket.consumed?).to be_false
+      expect(@service_ticket.consumed?).to be_falsey
     end
 require 'rubycas/server/activerecord/model/ticket'
 #require 'rubycas/server/activerecord/model/consumable'

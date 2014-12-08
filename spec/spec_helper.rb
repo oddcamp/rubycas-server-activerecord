@@ -3,6 +3,7 @@ Coveralls.wear!
 require "rubycas/server/activerecord"
 require "rubycas/server/activerecord/model/login_ticket"
 require 'rspec'
+require 'rspec/its'
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
