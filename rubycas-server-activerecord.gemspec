@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["vasilakisfil@gmail.com"]
   spec.description   = %q{Activerecord adapter for RubyCAS Server}
   spec.summary       = spec.description
-  spec.homepage      = "http://www.kollegorna.se"
+  spec.homepage      = "https://github.com/kollegorna/rubycas-server-activerecord"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
